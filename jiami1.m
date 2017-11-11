@@ -1,4 +1,5 @@
 function varargout = jiami1(varargin)
+%ä»…ä»…æ˜¯æµ‹è¯•ä¸€ä¸‹ä¿®æ”¹
 % JIAMI1 MATLAB code for jiami1.fig
 %      JIAMI1, by itself, creates a new JIAMI1 or raises the existing
 %      singleton*.
@@ -74,46 +75,46 @@ varargout{1} = handles.output;
 
 
 
-%´ò¿ªÎÄ¼ş ¡£matlab²»Ö§³ÖÍ¼ÏñµÄÎŞ·ûºÅÕûĞÍµÄ¼ÆËã
+%æ‰“å¼€æ–‡ä»¶ ã€‚matlabä¸æ”¯æŒå›¾åƒçš„æ— ç¬¦å·æ•´å‹çš„è®¡ç®—
 % --------------------------------------------------------------------
 function open_Callback(hObject, eventdata, handles)
 % hObject    handle to open (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[filename,pathname]=uigetfile({'*.*';'*.bmp';'*.tif';'*.png'},'select picture');  %Ñ¡ÔñÍ¼Æ¬Â·¾¶
+[filename,pathname]=uigetfile({'*.*';'*.bmp';'*.tif';'*.png'},'select picture');  %é€‰æ‹©å›¾ç‰‡è·¯å¾„
 if isequal(filename,0) || isequal(pathname,0)
-    errordlg(' Ã»ÓĞÑ¡ÔñÎÄ¼ş£¬³ö´í');
+    errordlg(' æ²¡æœ‰é€‰æ‹©æ–‡ä»¶ï¼Œå‡ºé”™');
     return;
 else
-    file=[pathname filename];  %ºÏ³ÉÂ·¾¶+ÎÄ¼şÃû
-    global SOURCE   %¶¨ÒåÒ»¸öÈ«¾Ö±äÁ¿img
+    file=[pathname filename];  %åˆæˆè·¯å¾„+æ–‡ä»¶å
+    global SOURCE   %å®šä¹‰ä¸€ä¸ªå…¨å±€å˜é‡img
     global CHANGE;
-    SOURCE = file; %±£´æ³õÊ¼Í¼ÏñÂ·¾¶
-    CHANGE=imread(file);   %¶ÁÈ¡Í¼Æ¬
-    axes(handles.axes1);  %Ê¹ÓÃµÚÒ»¸öaxes
-    imshow(CHANGE);  %ÏÔÊ¾Í¼Æ¬
-    handles.img=CHANGE; %ÆäÊµÕâ¸öÒ²ÊÇ²»±ØĞëµÄ£¬
+    SOURCE = file; %ä¿å­˜åˆå§‹å›¾åƒè·¯å¾„
+    CHANGE=imread(file);   %è¯»å–å›¾ç‰‡
+    axes(handles.axes1);  %ä½¿ç”¨ç¬¬ä¸€ä¸ªaxes
+    imshow(CHANGE);  %æ˜¾ç¤ºå›¾ç‰‡
+    handles.img=CHANGE; %å…¶å®è¿™ä¸ªä¹Ÿæ˜¯ä¸å¿…é¡»çš„ï¼Œ
 end
 
 
-% ±£´æÎÄ¼ş
+% ä¿å­˜æ–‡ä»¶
 % --------------------------------------------------------------------
 function save_Callback(hObject, eventdata, handles)
 % hObject    handle to save (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 [filename,pathname,filterindex]=...
-    uiputfile({'*.tiff';'*.bmp';'*.jpg';'*.tif';'*.png'},'save picture');%´æ´¢Í¼Æ¬Â·¾¶
+    uiputfile({'*.tiff';'*.bmp';'*.jpg';'*.tif';'*.png'},'save picture');%å­˜å‚¨å›¾ç‰‡è·¯å¾„
 if filterindex==0
-    errordlg(' Ã»ÓĞ±£´æÎÄ¼ş¡£');
-    return  %Èç¹ûÈ¡Ïû²Ù×÷£¬·µ»Ø.
+    errordlg(' æ²¡æœ‰ä¿å­˜æ–‡ä»¶ã€‚');
+    return  %å¦‚æœå–æ¶ˆæ“ä½œï¼Œè¿”å›.
 else
     file = getframe(handles.axes2);
-    %file=[pathname filename];  %ºÏ³ÉÂ·¾¶+ÎÄ¼şÃû
-    imwrite(file.cdata,[pathname,filename]);  %Ğ´ÈëÍ¼Æ¬ĞÅÏ¢£¬¼´±£´æÍ¼Æ¬
+    %file=[pathname filename];  %åˆæˆè·¯å¾„+æ–‡ä»¶å
+    imwrite(file.cdata,[pathname,filename]);  %å†™å…¥å›¾ç‰‡ä¿¡æ¯ï¼Œå³ä¿å­˜å›¾ç‰‡
 end
 
-%ÍË³ö
+%é€€å‡º
 % --------------------------------------------------------------------
 function exit_Callback(hObject, eventdata, handles)
 % hObject    handle to exit (see GCBO)
@@ -123,7 +124,7 @@ clc;
 close all;
 clear;
 
-%»¹Ô­£¬Ò²¾ÍÊÇ³·ÏúÀ²
+%è¿˜åŸï¼Œä¹Ÿå°±æ˜¯æ’¤é”€å•¦
 % --------------------------------------------------------------------
 function restore_Callback(hObject, eventdata, handles)
 % hObject    handle to restore (see GCBO)
@@ -132,12 +133,12 @@ function restore_Callback(hObject, eventdata, handles)
 global CHANGE;
 global SOURCE;
 CHANGE = imread(SOURCE);
-axes(handles.axes1);  %Ê¹ÓÃµÚÒ»¸öaxes
-imshow(CHANGE);  %ÏÔÊ¾Í¼Æ¬
-handles.img=CHANGE; %ÆäÊµÕâ¸öÒ²ÊÇ²»±ØĞëµÄ£¬¸Ğ¾õÕâ¸öÒÔºó¿ÉÒÔÓÃµ½£¬ÕâÀïÎÒ¾Í²»ËµÁË
+axes(handles.axes1);  %ä½¿ç”¨ç¬¬ä¸€ä¸ªaxes
+imshow(CHANGE);  %æ˜¾ç¤ºå›¾ç‰‡
+handles.img=CHANGE; %å…¶å®è¿™ä¸ªä¹Ÿæ˜¯ä¸å¿…é¡»çš„ï¼Œæ„Ÿè§‰è¿™ä¸ªä»¥åå¯ä»¥ç”¨åˆ°ï¼Œè¿™é‡Œæˆ‘å°±ä¸è¯´äº†
 
 
-%Í¼ÏñĞı×ª
+%å›¾åƒæ—‹è½¬
 % --------------------------------------------------------------------
 function turn_Callback(hObject, eventdata, handles)
 % hObject    handle to turn (see GCBO)
@@ -149,7 +150,7 @@ CHANGE = f;
 axes(handles.axes2);
 imshow(CHANGE);
 
-%»Ò¶ÈÍ¼
+%ç°åº¦å›¾
 % --- Executes on button press in gray.
 function gray_Callback(hObject, eventdata, handles)
 % hObject    handle to gray (see GCBO)
@@ -159,9 +160,9 @@ global CHANGE;
 axes(handles.axes1);
 CHANGE = im2double(rgb2gray(CHANGE));
 imshow(CHANGE);
-handles.img=CHANGE;      %±£´æ×îÖÕµÄ»Ò¶ÈÍ¼Ïñ
+handles.img=CHANGE;      %ä¿å­˜æœ€ç»ˆçš„ç°åº¦å›¾åƒ
 
-%Ô­Í¼µÄÖ±·½Í¼
+%åŸå›¾çš„ç›´æ–¹å›¾
 % --- Executes on button press in SourceGray.
 function SourceGray_Callback(hObject, eventdata, handles)
 % hObject    handle to SourceGray (see GCBO)
@@ -186,7 +187,7 @@ end
 
 
 % --- Executes on button press in graylist
-%±ä»»ºó»Ò¶ÈÖ±·½Í¼
+%å˜æ¢åç°åº¦ç›´æ–¹å›¾
 function graylist_Callback(hObject, eventdata, handles)
 % hObject    handle to graylist (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -208,7 +209,7 @@ else
     stem(horz,h1,'.');
 end
 
-%Í¼ÏñµÄ·Ö¸î
+%å›¾åƒçš„åˆ†å‰²
 % --- Executes on button press in division.
 function division_Callback(hObject, eventdata, handles)
 % hObject    handle to division (see GCBO)
@@ -219,7 +220,7 @@ global img1;
 global img2;
 global img3;
 global img4;
-[width,height] = size(CHANGE); %»ñÈ¡Í¼ÏñµÄ³¤¿í
+[width,height] = size(CHANGE); %è·å–å›¾åƒçš„é•¿å®½
 img1=CHANGE(1:0.4*height,1:0.4*width,:);
 img2=CHANGE(1:0.4*height,0.4*width:end,:);
 img3=CHANGE(0.4*height:end,1:0.4*width,:);
@@ -231,7 +232,7 @@ subplot(2,2,3),imshow(img3);
 subplot(2,2,4),imshow(img4);
 
 
-%Í¼ÏñµÄºÏ²¢
+%å›¾åƒçš„åˆå¹¶
 % --- Executes on button press in merge.
 function merge_Callback(hObject, eventdata, handles)
 % hObject    handle to merge (see GCBO)
@@ -242,7 +243,7 @@ CHANGE = [img1 img2;img3 img4];
 axes(handles.axes2);
 imshow(CHANGE);
 
-%Ã¨Á³±ä»»
+%çŒ«è„¸å˜æ¢
 % --- Executes on button press in ArnoldChange.
 function ArnoldChange_Callback(hObject, eventdata, handles)
 % hObject    handle to ArnoldChange (see GCBO)
@@ -255,11 +256,11 @@ c = str2double(get(handles.c, 'String'));
 [h,w] = size(CHANGE);
 N = h;
 imgn=zeros(h,w);
-for i=1:c  %ÎªÊ²Ã´ÕâÀïÒ»Ö±±¨´íÄØ£¿¸Ä±äÒ»ÏÂĞ´·¨¾ÍºÃÁË£¬why£¿
+for i=1:c  %ä¸ºä»€ä¹ˆè¿™é‡Œä¸€ç›´æŠ¥é”™å‘¢ï¼Ÿæ”¹å˜ä¸€ä¸‹å†™æ³•å°±å¥½äº†ï¼Œwhyï¼Ÿ
     for y=1:h
         for x=1:w 
-            %Arnold±ä»»µÄÔ­ÀíÊÇÏÈ×÷xÖá·½ÏòµÄ´íÇĞ±ä»»£¬
-            %ÔÙ×÷yÖá·½ÏòµÄ´íÇĞ±ä»»£¬×îºóµÄÄ£ÔËËãÏàµ±ÓÚÇĞ¸î»ØÌî²Ù×÷
+            %Arnoldå˜æ¢çš„åŸç†æ˜¯å…ˆä½œxè½´æ–¹å‘çš„é”™åˆ‡å˜æ¢ï¼Œ
+            %å†ä½œyè½´æ–¹å‘çš„é”™åˆ‡å˜æ¢ï¼Œæœ€åçš„æ¨¡è¿ç®—ç›¸å½“äºåˆ‡å‰²å›å¡«æ“ä½œ
             xx=mod((x-1)+b*(y-1),N)+1;
             yy=mod(a*(x-1)+(a*b+1)*(y-1),N)+1;        
             imgn(yy,xx)=CHANGE(y,x);                
@@ -267,11 +268,11 @@ for i=1:c  %ÎªÊ²Ã´ÕâÀïÒ»Ö±±¨´íÄØ£¿¸Ä±äÒ»ÏÂĞ´·¨¾ÍºÃÁË£¬why£¿
     end
     CHANGE=imgn;
 end
-axes(handles.axes2); %ÏÔÊ¾ÔÚaxes2ÉÏ
+axes(handles.axes2); %æ˜¾ç¤ºåœ¨axes2ä¸Š
 imshow(CHANGE,[]);
 
 
-%¸µÁ¢Ò¶±ä»»
+%å‚…ç«‹å¶å˜æ¢
 % --- Executes on button press in fft2change.
 function fft2change_Callback(hObject, eventdata, handles)
 % hObject    handle to fft2change (see GCBO)
@@ -279,7 +280,7 @@ function fft2change_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
 CHANGE = fft2(CHANGE);
-%Ìá³öFÓÃÓÚÏÔÊ¾µÄ¸ü¼ÓºÃ¿´µã
+%æå‡ºFç”¨äºæ˜¾ç¤ºçš„æ›´åŠ å¥½çœ‹ç‚¹
 F = CHANGE; 
 F = fftshift(F);
 F = log(1+abs(F));
@@ -287,9 +288,9 @@ axes(handles.axes2);
 imshow(F,[]);
 
 %--------------------------------------------------------
-%½âÃÜÍ¼Ïñ
+%è§£å¯†å›¾åƒ
 %--------------------------------------------------------
-%¸µÁ¢Ò¶Äæ±ä»»
+%å‚…ç«‹å¶é€†å˜æ¢
 % --- Executes on button press in niifft2.
 function niifft2_Callback(hObject, eventdata, handles)
 % hObject    handle to niifft2 (see GCBO)
@@ -302,7 +303,7 @@ axes(handles.axes2);
 imshow(Fc,[]);
 
 
-%Arnold±ä»»£¨Ã¨Á³±ä»»)
+%Arnoldå˜æ¢ï¼ˆçŒ«è„¸å˜æ¢)
 % --- Executes on button press in niArnold.
 function niArnold_Callback(hObject, eventdata, handles)
 % hObject    handle to niArnold (see GCBO)
@@ -329,14 +330,14 @@ axes(handles.axes2);
 imshow(CHANGE);
 
 
-%Í¼ÏñµÄÒş²Ø
-%Èç¹û°´ÕÕÒÆÎ»Òş²ØµÄ»°ĞèÒªÖ¸¶¨ÌØ¶¨µÄÎ»ÖÃ¡£Èç¹ûÖ»ÊÇÌáÈ¡Ò»Î»µÄ»°±£Õæ¶ÈºÜ¸ß£¬
-%µ«ÊÇ»á²»»á¹ıÓÚ¸´ÔÓÁËÄØ£¿2¡¢°´ÕÕÎÒÖ®Ç°µÄÉè¼ÆË¼Ïë£¬ÎÒÃÇ²»ÊÇ½«Õû¸öÒ»·ùÍ¼ÈÔ½øÈ¥¡£
-%ÒÆÎ»£º
-%   I = bitshift(I,-4);ÓÒÒÆ
+%å›¾åƒçš„éšè—
+%å¦‚æœæŒ‰ç…§ç§»ä½éšè—çš„è¯éœ€è¦æŒ‡å®šç‰¹å®šçš„ä½ç½®ã€‚å¦‚æœåªæ˜¯æå–ä¸€ä½çš„è¯ä¿çœŸåº¦å¾ˆé«˜ï¼Œ
+%ä½†æ˜¯ä¼šä¸ä¼šè¿‡äºå¤æ‚äº†å‘¢ï¼Ÿ2ã€æŒ‰ç…§æˆ‘ä¹‹å‰çš„è®¾è®¡æ€æƒ³ï¼Œæˆ‘ä»¬ä¸æ˜¯å°†æ•´ä¸ªä¸€å¹…å›¾ä»è¿›å»ã€‚
+%ç§»ä½ï¼š
+%   I = bitshift(I,-4);å³ç§»
 %   R = bitshift(R,-4);
-%   R = bitshift(R,4); ½«ºóËÄÎ»ÖÃÎª0
-%   X = R + I; ×éºÏ³ÉĞÂµÄÍ¼Ïñ
+%   R = bitshift(R,4); å°†åå››ä½ç½®ä¸º0
+%   X = R + I; ç»„åˆæˆæ–°çš„å›¾åƒ
 %
 % --- Executes on button press in conceal.
 function conceal_Callback(hObject, eventdata, handles)
@@ -344,66 +345,66 @@ function conceal_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
-%Ñ¡ÔñÒş²Øµ½ÄÇÕÅÍ¼Æ¬È¥
-[filename,pathname]=uigetfile({'*.*';'*.bmp';'*.tif';'*.png'},'select picture');  %Ñ¡ÔñÍ¼Æ¬Â·¾¶
+%é€‰æ‹©éšè—åˆ°é‚£å¼ å›¾ç‰‡å»
+[filename,pathname]=uigetfile({'*.*';'*.bmp';'*.tif';'*.png'},'select picture');  %é€‰æ‹©å›¾ç‰‡è·¯å¾„
 if isequal(filename,0) || isequal(pathname,0)
-    errordlg(' Ã»ÓĞÑ¡ÔñÎÄ¼ş£¬³ö´í');
+    errordlg(' æ²¡æœ‰é€‰æ‹©æ–‡ä»¶ï¼Œå‡ºé”™');
     return;
 else
-    file=[pathname filename];  %ºÏ³ÉÂ·¾¶+ÎÄ¼şÃû
-    CONCEAL=imread(file);   %¶ÁÈ¡Í¼Æ¬ĞÅÏ¢
-    %¾­¹ıÏàÓ¦µÄ±ä»¯Ö®ºóÔÙÊ¹ÓÃÕâ¸ö¾Í²»ÊÇºÜºÃÁË£¬Òò´ËÎÒÃÇ¿ÉÒÔ
-    %¶Ô±ä»»µÄÍ¼Ïñ£¬¼ÙÉèÆäÊÇ°ËÎ»µÄ£¬Ò²¾ÍÊÇunit8ÀàĞÍµÄ£¬ÎÒÃÇ¿ÉÒÔ
-    %Ã¿´ÎÌáÈ¡Á½Î»½øĞĞÒş²Ø£¬ÄÇÑù»á²»»á¸üºÃÄØ£¿¸Ğ¾õ»¹ÊÇ¿ÉÒÔµÄÅ¶
-    axes(handles.axes1);  %Ê¹ÓÃµÚÒ»¸öaxes
+    file=[pathname filename];  %åˆæˆè·¯å¾„+æ–‡ä»¶å
+    CONCEAL=imread(file);   %è¯»å–å›¾ç‰‡ä¿¡æ¯
+    %ç»è¿‡ç›¸åº”çš„å˜åŒ–ä¹‹åå†ä½¿ç”¨è¿™ä¸ªå°±ä¸æ˜¯å¾ˆå¥½äº†ï¼Œå› æ­¤æˆ‘ä»¬å¯ä»¥
+    %å¯¹å˜æ¢çš„å›¾åƒï¼Œå‡è®¾å…¶æ˜¯å…«ä½çš„ï¼Œä¹Ÿå°±æ˜¯unit8ç±»å‹çš„ï¼Œæˆ‘ä»¬å¯ä»¥
+    %æ¯æ¬¡æå–ä¸¤ä½è¿›è¡Œéšè—ï¼Œé‚£æ ·ä¼šä¸ä¼šæ›´å¥½å‘¢ï¼Ÿæ„Ÿè§‰è¿˜æ˜¯å¯ä»¥çš„å“¦
+    axes(handles.axes1);  %ä½¿ç”¨ç¬¬ä¸€ä¸ªaxes
     
 end
 
 
-%Í¼ÏñµÄÏÔÊ¾
+%å›¾åƒçš„æ˜¾ç¤º
 % --- Executes on button press in separate.
 function separate_Callback(hObject, eventdata, handles)
 % hObject    handle to separate (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%Logistic±ä»»
+%Logisticå˜æ¢
 % --- Executes on button press in Logistic.
 function Logistic_Callback(hObject, eventdata, handles)
 % hObject    handle to Logistic (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%Í¼ÏñÏñËØµÄ¸Ä±ä£¬ÀûÓÃµÄÊÇLogistic²úÉúÏàÓ¦µÄ»ìãçĞòÁĞ£¬È»ºóºÍÔ­Í¼Ïñ½øĞĞÓë²Ù×÷
-%»¹ÓĞÒ»ÖÖ¾ÍÊÇ¿ÉÒÔÀûÓÃÕâ¸ö¸Ä±äÎ»ÖÃ
-%pictureÎª»Ò¶ÈÍ¼Ïñ
-%x0,u¶¼ÊÇ³õÊ¼Öµ
+%å›¾åƒåƒç´ çš„æ”¹å˜ï¼Œåˆ©ç”¨çš„æ˜¯Logisticäº§ç”Ÿç›¸åº”çš„æ··æ²Œåºåˆ—ï¼Œç„¶åå’ŒåŸå›¾åƒè¿›è¡Œä¸æ“ä½œ
+%è¿˜æœ‰ä¸€ç§å°±æ˜¯å¯ä»¥åˆ©ç”¨è¿™ä¸ªæ”¹å˜ä½ç½®
+%pictureä¸ºç°åº¦å›¾åƒ
+%x0,uéƒ½æ˜¯åˆå§‹å€¼
 global CHANGE;
 x0 = get(handles.logisticx0,'string');
 u = get(handles.logisticu,'string');
 [M,N]=size(CHANGE);
 x=x0;
-%µü´ú100´Î£¬´ïµ½³ä·Ö»ìãç×´Ì¬
+%è¿­ä»£100æ¬¡ï¼Œè¾¾åˆ°å……åˆ†æ··æ²ŒçŠ¶æ€
 for i=1:100
-    x=u*x*(1-x);    %Logistic»ìãç¸Ä±ä
+    x=u*x*(1-x);    %Logisticæ··æ²Œæ”¹å˜
 end
-%²úÉúÒ»Î¬»ìãç¼ÓÃÜĞòÁĞ
+%äº§ç”Ÿä¸€ç»´æ··æ²ŒåŠ å¯†åºåˆ—
 A=zeros(1,M*N);
 A(1)=x;
 for i=1:M*N-1
-    A(i+1)=u*A(i)*(1-A(i));%»ìãç¸Ä±ä
+    A(i+1)=u*A(i)*(1-A(i));%æ··æ²Œæ”¹å˜
 end
-%¹éÒ»»¯ĞòÁĞ
-B=uint8(255*A); %½«Ëæ»úÊı×éÖĞÊı¾İ±ä³É0£¬»òÕß1
+%å½’ä¸€åŒ–åºåˆ—
+B=uint8(255*A); %å°†éšæœºæ•°ç»„ä¸­æ•°æ®å˜æˆ0ï¼Œæˆ–è€…1
 
-%×ª»¯Îª¶şÎ¬»ìãç¼ÓÃÜĞòÁĞ
+%è½¬åŒ–ä¸ºäºŒç»´æ··æ²ŒåŠ å¯†åºåˆ—
 Fuck=reshape(B,M,N);
-Rod=bitxor(picture,Fuck);%Òì»ò²Ù×÷¼ÓÃÜ
+Rod=bitxor(picture,Fuck);%å¼‚æˆ–æ“ä½œåŠ å¯†
 CHANGE=Rod;
 axes(handles.axes2);
 imshow(CHANGE);
 
 
-%LogisticÄæ±ä»»ËüÓëLogistic±ä»»¾ÍÊÇÒ»ÑùµÄ£¬ÎÒµÄÏë·¨°ÑËûÃÇ×éºÏÆğÀ´
+%Logisticé€†å˜æ¢å®ƒä¸Logisticå˜æ¢å°±æ˜¯ä¸€æ ·çš„ï¼Œæˆ‘çš„æƒ³æ³•æŠŠä»–ä»¬ç»„åˆèµ·æ¥
 % --- Executes on button press in InverseLogistic.
 function InverseLogistic_Callback(hObject, eventdata, handles)
 % hObject    handle to InverseLogistic (see GCBO)
@@ -414,57 +415,57 @@ x0 = get(handles.nilogisticx0,'string');
 u = get(handles.nilogisticu,'string');
 [M,N]=size(CHANGE);
 x=x0;
-%µü´ú100´Î£¬´ïµ½³ä·Ö»ìãç×´Ì¬
+%è¿­ä»£100æ¬¡ï¼Œè¾¾åˆ°å……åˆ†æ··æ²ŒçŠ¶æ€
 for i=1:100
-    x=u*x*(1-x);    %Logistic»ìãç¸Ä±ä
+    x=u*x*(1-x);    %Logisticæ··æ²Œæ”¹å˜
 end
-%²úÉúÒ»Î¬»ìãç¼ÓÃÜĞòÁĞ
+%äº§ç”Ÿä¸€ç»´æ··æ²ŒåŠ å¯†åºåˆ—
 A=zeros(1,M*N);
 A(1)=x;
 for i=1:M*N-1
-    A(i+1)=u*A(i)*(1-A(i));%»ìãç¸Ä±ä
+    A(i+1)=u*A(i)*(1-A(i));%æ··æ²Œæ”¹å˜
 end
-%¹éÒ»»¯ĞòÁĞ
-B=uint8(255*A); %½«Ëæ»úÊı×éÖĞÊı¾İ±ä³É0£¬»òÕß1
+%å½’ä¸€åŒ–åºåˆ—
+B=uint8(255*A); %å°†éšæœºæ•°ç»„ä¸­æ•°æ®å˜æˆ0ï¼Œæˆ–è€…1
 
-%×ª»¯Îª¶şÎ¬»ìãç¼ÓÃÜĞòÁĞ
+%è½¬åŒ–ä¸ºäºŒç»´æ··æ²ŒåŠ å¯†åºåˆ—
 Fuck=reshape(B,M,N);
-Rod=bitxor(CHANGE,Fuck);%Òì»ò²Ù×÷¼ÓÃÜ
+Rod=bitxor(CHANGE,Fuck);%å¼‚æˆ–æ“ä½œåŠ å¯†
 CHANGE=Rod;
 axes(handles.axes2);
 imshow(CHANGE);
 
 
 %--------------------------------------------------------
-%Ä£ÄâÊµ¼Ê»·¾³£¬¼ÓÈëÏàÓ¦µÄÔëÉù,ÒÔ¼°È¥³ıÔëÉù
+%æ¨¡æ‹Ÿå®é™…ç¯å¢ƒï¼ŒåŠ å…¥ç›¸åº”çš„å™ªå£°,ä»¥åŠå»é™¤å™ªå£°
 % --- Executes on button press in salt.
-%½·ÑÎÔëÉù
+%æ¤’ç›å™ªå£°
 function salt_Callback(hObject, eventdata, handles)
 % hObject    handle to salt (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
 saltnumber = str2double(get(handles.saltnumber, 'String'));
-%set(handles.slider1, 'Value', saltnumber); %¶¯Ì¬µ÷½Ú
-CHANGE = imnoise(CHANGE,'salt & pepper',saltnumber);%¼ÓÈë½·ÑÎÔëÉù
+%set(handles.slider1, 'Value', saltnumber); %åŠ¨æ€è°ƒèŠ‚
+CHANGE = imnoise(CHANGE,'salt & pepper',saltnumber);%åŠ å…¥æ¤’ç›å™ªå£°
 axes(handles.axes4);
 imshow(CHANGE);
 
 
 % --- Executes on button press in gauss.
-%¸ßË¹ÔëÉù
+%é«˜æ–¯å™ªå£°
 function gauss_Callback(hObject, eventdata, handles)
 % hObject    handle to gauss (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
 gaussnumber = str2double(get(handles.gaussnumber, 'String'));
-%set(handles.slider1, 'Value', gaussnumber); %¶¯Ì¬µ÷½Ú
-CHANGE = imnoise(CHANGE,'gaussian',gaussnumber);%¼ÓÈë¸ßË¹ÔëÉù
+%set(handles.slider1, 'Value', gaussnumber); %åŠ¨æ€è°ƒèŠ‚
+CHANGE = imnoise(CHANGE,'gaussian',gaussnumber);%åŠ å…¥é«˜æ–¯å™ªå£°
 axes(handles.axes4);
 imshow(CHANGE,[])
 
-%Ä£ÄâÍ¼Æ¬Ëğ»µ
+%æ¨¡æ‹Ÿå›¾ç‰‡æŸå
 
 % --- Executes on button press in imgedamage.
 function imgedamage_Callback(hObject, eventdata, handles)
@@ -475,26 +476,26 @@ global CHANGE;
 damagenumber = str2double(get(handles.damagenumber, 'String'));
 damagenumber2 = str2double(get(handles.damagenumber2, 'String'));
 [w,h] = size(CHANGE);
-demo = zeros(w);    %×÷ÎªÌî²¹¿Õ°×Ê¹ÓÃ
-damage1=CHANGE(1:damagenumber*w,1:h*damagenumber2,:);    %Ê£ÓàÍ¼Ïñ
-%ÓÃ¿Õ°×Ìî²¹ 
+demo = zeros(w);    %ä½œä¸ºå¡«è¡¥ç©ºç™½ä½¿ç”¨
+damage1=CHANGE(1:damagenumber*w,1:h*damagenumber2,:);    %å‰©ä½™å›¾åƒ
+%ç”¨ç©ºç™½å¡«è¡¥ 
 damage2 = demo(1:damagenumber*w,damagenumber2*h:end,:);
 damage3 = demo(damagenumber*w:end,1:h*damagenumber2,:);
 damage4 = demo(damagenumber*w:end,h*damagenumber2:end,:);
-CHANGE = [damage1 damage2;damage3 damage4];%¼Ç×¡Ë³Ğò
+CHANGE = [damage1 damage2;damage3 damage4];%è®°ä½é¡ºåº
 axes(handles.axes2);
 imshow(CHANGE,[])
 
 
 %--------------------------------------------------------
-%ÏßĞÔÂË²¨
+%çº¿æ€§æ»¤æ³¢
 % --- Executes on button press in linearSmoothing.
 function linearSmoothing_Callback(hObject, eventdata, handles)
 % hObject    handle to linearSmoothing (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
-h=[1 1 1;1 1 1;1 1 1];  %×¢ÒâhÎªÑÚÄ£
+h=[1 1 1;1 1 1;1 1 1];  %æ³¨æ„hä¸ºæ©æ¨¡
 I=double(CHANGE);
 H = 3*3;
 %k=convn(I,h)/H;
@@ -503,19 +504,19 @@ CHANGE = k;
 axes(handles.axes4);
 imshow(CHANGE,[]);
 
-%×ÔÊÊÓ¦ÂË²¨
+%è‡ªé€‚åº”æ»¤æ³¢
 % --- Executes on button press in AdaptionSmoothing.
 function AdaptionSmoothing_Callback(hObject, eventdata, handles)
 % hObject    handle to AdaptionSmoothing (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
-k=wiener2(CHANGE,[3,3]); %µ÷ÓÃÏµÍ³º¯Êı
+k=wiener2(CHANGE,[3,3]); %è°ƒç”¨ç³»ç»Ÿå‡½æ•°
 CHANGE=k;
 axes(handles.axes4);
 imshow(CHANGE,[]);
 
-%µÍÍ¨ÂË²¨Æ÷ ,¶ş½×°ÍÌØÎÖË¹µÍÍ¨ÂË²¨Æ÷
+%ä½é€šæ»¤æ³¢å™¨ ,äºŒé˜¶å·´ç‰¹æ²ƒæ–¯ä½é€šæ»¤æ³¢å™¨
 % --- Executes on button press in DownSmoothing.
 function DownSmoothing_Callback(hObject, eventdata, handles)
 % hObject    handle to DownSmoothing (see GCBO)
@@ -523,13 +524,13 @@ function DownSmoothing_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
 [w,h]=size(CHANGE);
-nn=2;       %¶ş½×°ÍÌØÎÖË¹µÍÍ¨
-d0 = str2double(get(handles.ditong, 'String'));           %½ØÖ¹ÆµÂÊ50
+nn=2;       %äºŒé˜¶å·´ç‰¹æ²ƒæ–¯ä½é€š
+d0 = str2double(get(handles.ditong, 'String'));           %æˆªæ­¢é¢‘ç‡50
 m=fix(w/2); n=fix(h/2);
 for i=1:w
        for j=1:h
            d=sqrt((i-m)^2+(j-n)^2);
-           k=1/(1+0.414*(d/d0)^(2*nn));     % ¼ÆËãµÍÍ¨ÂË²¨Æ÷´«µİº¯Êı
+           k=1/(1+0.414*(d/d0)^(2*nn));     % è®¡ç®—ä½é€šæ»¤æ³¢å™¨ä¼ é€’å‡½æ•°
            CHANGE(i,j)=k*CHANGE(i,j);
        end
 end
@@ -537,7 +538,7 @@ axes(handles.axes4);
 imshow(CHANGE,[]);
 
 
-%¸ßÍ¨ÂË²¨
+%é«˜é€šæ»¤æ³¢
 % --- Executes on button press in HightSmoothing.
 function HightSmoothing_Callback(hObject, eventdata, handles)
 % hObject    handle to HightSmoothing (see GCBO)
@@ -545,11 +546,11 @@ function HightSmoothing_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global CHANGE;
 [w,h]=size(CHANGE);
-d0=get(handles.gaotong,'string');                                  %½ØÖ¹ÆµÂÊ25
+d0=get(handles.gaotong,'string');                                  %æˆªæ­¢é¢‘ç‡25
 m=fix(w/2); n=fix(h/2);
 for i=1:w
         for j=1:h
-            d=sqrt((i-m)^2+(j-n)^2);        % ¼ÆËã¸ßÍ¨ÂË²¨Æ÷´«µİº¯Êı
+            d=sqrt((i-m)^2+(j-n)^2);        % è®¡ç®—é«˜é€šæ»¤æ³¢å™¨ä¼ é€’å‡½æ•°
             if d<=d0
                 k=0;
             else k=1;
@@ -562,7 +563,7 @@ imshow(CHANGE,[]);
 
 
 %----------------------------------------------------------------
-%¶¨ÒåµÄÒ»Ğ©ÏàÓ¦µÄ²ÎÊı£¬ÒÔ¼°ÎÒÃÇĞèÒª»ñÈ¡¶«¶«
+%å®šä¹‰çš„ä¸€äº›ç›¸åº”çš„å‚æ•°ï¼Œä»¥åŠæˆ‘ä»¬éœ€è¦è·å–ä¸œä¸œ
 function edit3_Callback(hObject, eventdata, handles)
 % hObject    handle to edit3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -586,7 +587,7 @@ end
 
 
 
-%a,b,c ÒÔ¼°a1,b1,c1·Ö±ğÊÇ½øĞĞÃ¨Á³±ä»»ÊÇĞèÒªµÄÃô¸ĞÖµ£¬cÊÇµü´úÖµ
+%a,b,c ä»¥åŠa1,b1,c1åˆ†åˆ«æ˜¯è¿›è¡ŒçŒ«è„¸å˜æ¢æ˜¯éœ€è¦çš„æ•æ„Ÿå€¼ï¼Œcæ˜¯è¿­ä»£å€¼
 function a_Callback(hObject, eventdata, handles)
 % hObject    handle to a (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -703,8 +704,8 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-%¸ßË¹ÔëÉùÓë½·ÑÎÔëÉùµÄÕ¼±È
-%½·ÑÎÔëÉù
+%é«˜æ–¯å™ªå£°ä¸æ¤’ç›å™ªå£°çš„å æ¯”
+%æ¤’ç›å™ªå£°
 function saltnumber_Callback(hObject, eventdata, handles)
 % hObject    handle to saltnumber (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -723,7 +724,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-%¸ßË¹ÔëÉù
+%é«˜æ–¯å™ªå£°
 function gaussnumber_Callback(hObject, eventdata, handles)
 % hObject    handle to gaussnumber (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
